@@ -1,0 +1,1125 @@
+/* Flashlight Background - From Uiverse.io by Cobp */
+.flashlight-container {
+    --color-0: #fff;
+    --color-1: #111;
+    --color-2: #222;
+    --color-3: #333;
+    --color-4: #2e2e2e;
+    --color-5: #d2b48c;
+    --color-6: #b22222;
+    --color-7: #871a1a;
+    --color-8: #ff6347;
+    --color-9: #ff3814;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: var(--color-1);
+    background-image: linear-gradient(
+        to top,
+        var(--color-2) 5%,
+        var(--color-1) 6%,
+        var(--color-1) 7%,
+        transparent 7%
+      ),
+      linear-gradient(to bottom, var(--color-1) 30%, transparent 80%),
+      linear-gradient(to right, var(--color-2), var(--color-4) 5%, transparent 5%),
+      linear-gradient(
+        to right,
+        transparent 6%,
+        var(--color-2) 6%,
+        var(--color-4) 9%,
+        transparent 9%
+      ),
+      linear-gradient(
+        to right,
+        transparent 27%,
+        var(--color-2) 27%,
+        var(--color-4) 34%,
+        transparent 34%
+      ),
+      linear-gradient(
+        to right,
+        transparent 51%,
+        var(--color-2) 51%,
+        var(--color-4) 57%,
+        transparent 57%
+      ),
+      linear-gradient(to bottom, var(--color-1) 35%, transparent 35%),
+      linear-gradient(
+        to right,
+        transparent 42%,
+        var(--color-2) 42%,
+        var(--color-4) 44%,
+        transparent 44%
+      ),
+      linear-gradient(
+        to right,
+        transparent 45%,
+        var(--color-2) 45%,
+        var(--color-4) 47%,
+        transparent 47%
+      ),
+      linear-gradient(
+        to right,
+        transparent 48%,
+        var(--color-2) 48%,
+        var(--color-4) 50%,
+        transparent 50%
+      ),
+      linear-gradient(
+        to right,
+        transparent 87%,
+        var(--color-2) 87%,
+        var(--color-4) 91%,
+        transparent 91%
+      ),
+      linear-gradient(to bottom, var(--color-1) 37.5%, transparent 37.5%),
+      linear-gradient(
+        to right,
+        transparent 14%,
+        var(--color-2) 14%,
+        var(--color-4) 20%,
+        transparent 20%
+      ),
+      linear-gradient(to bottom, var(--color-1) 40%, transparent 40%),
+      linear-gradient(
+        to right,
+        transparent 10%,
+        var(--color-2) 10%,
+        var(--color-4) 13%,
+        transparent 13%
+      ),
+      linear-gradient(
+        to right,
+        transparent 21%,
+        var(--color-2) 21%,
+        #1a1a1a 25%,
+        transparent 25%
+      ),
+      linear-gradient(
+        to right,
+        transparent 58%,
+        var(--color-2) 58%,
+        var(--color-4) 64%,
+        transparent 64%
+      ),
+      linear-gradient(
+        to right,
+        transparent 92%,
+        var(--color-2) 92%,
+        var(--color-4) 95%,
+        transparent 95%
+      ),
+      linear-gradient(to bottom, var(--color-1) 48%, transparent 48%),
+      linear-gradient(
+        to right,
+        transparent 96%,
+        var(--color-2) 96%,
+        #1a1a1a 99%,
+        transparent 99%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 68.5%,
+        transparent 76%,
+        var(--color-1) 76%,
+        var(--color-1) 77.5%,
+        transparent 77.5%,
+        transparent 86%,
+        var(--color-1) 86%,
+        var(--color-1) 87.5%,
+        transparent 87.5%
+      ),
+      linear-gradient(
+        to right,
+        transparent 35%,
+        var(--color-2) 35%,
+        var(--color-4) 41%,
+        transparent 41%
+      ),
+      linear-gradient(to bottom, var(--color-1) 68%, transparent 68%),
+      linear-gradient(
+        to right,
+        transparent 78%,
+        var(--color-3) 78%,
+        var(--color-3) 80%,
+        transparent 80%,
+        transparent 82%,
+        var(--color-3) 82%,
+        var(--color-3) 83%,
+        transparent 83%
+      ),
+      linear-gradient(
+        to right,
+        transparent 66%,
+        var(--color-2) 66%,
+        var(--color-4) 85%,
+        transparent 85%
+      );
+    background-size: 300px 150px;
+    background-position: center bottom;
+}
+
+.flashlight-container:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-1);
+    background-image: linear-gradient(
+        to top,
+        var(--color-5) 5%,
+        var(--color-1) 6%,
+        var(--color-1) 7%,
+        transparent 7%
+      ),
+      linear-gradient(to bottom, var(--color-1) 30%, transparent 30%),
+      linear-gradient(to right, var(--color-6), var(--color-7) 5%, transparent 5%),
+      linear-gradient(
+        to right,
+        transparent 6%,
+        var(--color-8) 6%,
+        var(--color-9) 9%,
+        transparent 9%
+      ),
+      linear-gradient(
+        to right,
+        transparent 27%,
+        #556b2f 27%,
+        #39481f 34%,
+        transparent 34%
+      ),
+      linear-gradient(
+        to right,
+        transparent 51%,
+        #fa8072 51%,
+        #f85441 57%,
+        transparent 57%
+      ),
+      linear-gradient(to bottom, var(--color-1) 35%, transparent 35%),
+      linear-gradient(
+        to right,
+        transparent 42%,
+        #008080 42%,
+        #004d4d 44%,
+        transparent 44%
+      ),
+      linear-gradient(
+        to right,
+        transparent 45%,
+        #008080 45%,
+        #004d4d 47%,
+        transparent 47%
+      ),
+      linear-gradient(
+        to right,
+        transparent 48%,
+        #008080 48%,
+        #004d4d 50%,
+        transparent 50%
+      ),
+      linear-gradient(
+        to right,
+        transparent 87%,
+        #789 87%,
+        #4f5d6a 91%,
+        transparent 91%
+      ),
+      linear-gradient(to bottom, var(--color-1) 37.5%, transparent 37.5%),
+      linear-gradient(
+        to right,
+        transparent 14%,
+        #bdb76b 14%,
+        #989244 20%,
+        transparent 20%
+      ),
+      linear-gradient(to bottom, var(--color-1) 40%, transparent 40%),
+      linear-gradient(
+        to right,
+        transparent 10%,
+        #808000 10%,
+        #4d4d00 13%,
+        transparent 13%
+      ),
+      linear-gradient(
+        to right,
+        transparent 21%,
+        #8b4513 21%,
+        #5e2f0d 25%,
+        transparent 25%
+      ),
+      linear-gradient(
+        to right,
+        transparent 58%,
+        #8b4513 58%,
+        #5e2f0d 64%,
+        transparent 64%
+      ),
+      linear-gradient(
+        to right,
+        transparent 92%,
+        #2f4f4f 92%,
+        #1c2f2f 95%,
+        transparent 95%
+      ),
+      linear-gradient(to bottom, var(--color-1) 48%, transparent 48%),
+      linear-gradient(
+        to right,
+        transparent 96%,
+        #2f4f4f 96%,
+        #1c2f2f 99%,
+        transparent 99%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 68.5%,
+        transparent 76%,
+        var(--color-1) 76%,
+        var(--color-1) 77.5%,
+        transparent 77.5%,
+        transparent 86%,
+        var(--color-1) 86%,
+        var(--color-1) 87.5%,
+        transparent 87.5%
+      ),
+      linear-gradient(
+        to right,
+        transparent 35%,
+        #cd5c5c 35%,
+        #bc3a3a 41%,
+        transparent 41%
+      ),
+      linear-gradient(to bottom, var(--color-1) 68%, transparent 68%),
+      linear-gradient(
+        to right,
+        transparent 78%,
+        #bc8f8f 78%,
+        #bc8f8f 80%,
+        transparent 80%,
+        transparent 82%,
+        #bc8f8f 82%,
+        #bc8f8f 83%,
+        transparent 83%
+      ),
+      linear-gradient(
+        to right,
+        transparent 66%,
+        #a52a2a 66%,
+        #7c2020 85%,
+        transparent 85%
+      );
+    background-size: 300px 150px;
+    background-position: center bottom;
+    clip-path: circle(150px at center center);
+    animation: flashlight 20s ease infinite;
+}
+
+.flashlight-container:after {
+    content: "";
+    width: 25px;
+    height: 10px;
+    position: absolute;
+    left: calc(50% + 59px);
+    bottom: 100px;
+    background-repeat: no-repeat;
+    background-image: radial-gradient(circle, #fff 50%, transparent 50%),
+      radial-gradient(circle, #fff 50%, transparent 50%);
+    background-size: 10px 10px;
+    background-position:
+      left center,
+      right center;
+    animation: eyes 20s infinite;
+}
+
+@keyframes flashlight {
+    0% {
+        clip-path: circle(150px at -25% 10%);
+    }
+
+    38% {
+        clip-path: circle(150px at 60% 20%);
+    }
+
+    39% {
+        opacity: 1;
+        clip-path: circle(150px at 60% 86%);
+    }
+
+    40% {
+        opacity: 0;
+        clip-path: circle(150px at 60% 86%);
+    }
+
+    41% {
+        opacity: 1;
+        clip-path: circle(150px at 60% 86%);
+    }
+
+    42% {
+        opacity: 0;
+        clip-path: circle(150px at 60% 86%);
+    }
+
+    54% {
+        opacity: 0;
+        clip-path: circle(150px at 60% 86%);
+    }
+
+    55% {
+        opacity: 1;
+        clip-path: circle(150px at 60% 86%);
+    }
+
+    59% {
+        opacity: 1;
+        clip-path: circle(150px at 60% 86%);
+    }
+
+    64% {
+        clip-path: circle(150px at 45% 78%);
+    }
+
+    68% {
+        clip-path: circle(150px at 85% 89%);
+    }
+
+    72% {
+        clip-path: circle(150px at 60% 86%);
+    }
+
+    74% {
+        clip-path: circle(150px at 60% 86%);
+    }
+
+    100% {
+        clip-path: circle(150px at 150% 50%);
+    }
+}
+
+@keyframes eyes {
+    0%,
+    38% {
+        opacity: 0;
+    }
+
+    39%,
+    41% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    40% {
+        transform: scaleY(0);
+        filter: none;
+        background-image: radial-gradient(circle, #fff 50%, transparent 50%),
+          radial-gradient(circle, #fff 50%, transparent 50%);
+    }
+
+    41% {
+        transform: scaleY(1);
+        background-image: radial-gradient(circle, #ff0000 50%, transparent 50%),
+          radial-gradient(circle, #ff0000 50%, transparent 50%);
+        filter: drop-shadow(0 0 4px #ff8686);
+    }
+
+    42%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Welcome Page Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background: #111; /* ← تغيير الخلفية إلى داكن لتناسب الكشاف */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Animated Background */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    z-index: 10; /* ← رفع z-index ليظهر فوق المطر */
+    position: relative;
+}
+
+/* Phone Card - From Uiverse.io by google_4193 */
+.card {
+    width: 210px;
+    height: 400px;
+    background: black;
+    border-radius: 35px;
+    border: 2px solid rgb(40, 40, 40);
+    padding: 7px;
+    position: relative;
+    box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.486);
+    animation: phoneFloat 3s ease-in-out infinite;
+}
+
+@keyframes phoneFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+.card-int {
+    background-image: linear-gradient(
+        to right bottom,
+        #8e8989,
+        #ff004431,
+        #5a3e4b,
+        #262225,
+        #2c0334,
+        #ffffff,
+        #6a6878,
+        #c1d9ff,
+        #003d94,
+        #002e66,
+        #001d3a,
+        #020812
+    );
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+    height: 100%;
+    border-radius: 25px;
+    transition: all 0.6s ease-out;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card:hover .card-int {
+    background-position: 100% 100%;
+}
+
+.top {
+    position: absolute;
+    top: 0px;
+    right: 50%;
+    transform: translate(50%, 0%);
+    width: 35%;
+    height: 18px;
+    background-color: rgb(1, 1, 1);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.speaker {
+    position: absolute;
+    top: 2px;
+    right: 50%;
+    transform: translate(50%, 0%);
+    width: 40%;
+    height: 2px;
+    border-radius: 2px;
+    background-color: rgb(20, 20, 20);
+}
+
+.camera {
+    position: absolute;
+    top: 6px;
+    right: 84%;
+    transform: translate(50%, 0%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.048);
+}
+
+.int {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    background-color: rgba(0, 0, 255, 0.212);
+}
+
+.btn1,
+.btn2,
+.btn3,
+.btn4 {
+    position: absolute;
+    width: 2px;
+}
+
+.btn1,
+.btn2,
+.btn3 {
+    height: 45px;
+    top: 30%;
+    right: -4px;
+    background-image: linear-gradient(
+        to right,
+        #111111,
+        #222222,
+        #333333,
+        #464646,
+        #595959
+    );
+}
+
+.btn2,
+.btn3 {
+    transform: scale(-1);
+    left: -4px;
+}
+
+.btn2,
+.btn3 {
+    transform: scale(-1);
+    height: 30px;
+}
+
+.btn2 {
+    top: 26%;
+}
+
+.btn3 {
+    top: 36%;
+}
+
+.hello {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem; /* ← زيادة من 1.5rem إلى 2rem */
+    font-weight: 900; /* ← زيادة من bold إلى 900 */
+    text-align: center;
+    line-height: 45px; /* ← زيادة من 35px إلى 45px */
+    height: 100%;
+    transition: 0.5s ease-in-out;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dfe6e9);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-text 3s ease infinite;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* ← إضافة ظل للنص */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2)); /* ← إضافة تأثير إضاءة */
+}
+
+@keyframes gradient-text {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.hidden {
+    display: block;
+    opacity: 0;
+    transition: all 0.3s ease-in;
+    font-size: 1.6rem; /* ← زيادة من 1.2rem إلى 1.6rem */
+    margin-top: 15px; /* ← زيادة من 10px إلى 15px */
+    font-weight: 700; /* ← إضافة وزن خط */
+    background: linear-gradient(45deg, #f093fb, #f5576c, #4facfe, #00f2fe, #43e97b, #38f9d7);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-text 4s ease infinite;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* ← إضافة ظل للنص */
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); /* ← إضافة تأثير إضاءة */
+}
+
+.card:hover .hidden {
+    opacity: 1;
+}
+
+.card:hover .hello {
+    transform: translateY(-10px);
+}
+
+/* Enter Button */
+.enter-container {
+    animation: slideUp 1s ease-out 0.5s both;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.enter-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.enter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.enter-btn:hover::before {
+    left: 100%;
+}
+
+.enter-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+}
+
+.enter-btn:active {
+    transform: translateY(-1px);
+}
+
+.enter-btn i {
+    font-size: 1.2rem;
+}
+
+/* School Info */
+.school-info {
+    text-align: center;
+    color: white;
+    animation: fadeIn 1s ease-out 1s both;
+    max-width: 400px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.school-info h2 {
+    font-size: 2.5rem; /* ← زيادة من 2rem إلى 2.5rem */
+    margin-bottom: 15px; /* ← زيادة من 10px إلى 15px */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-text 5s ease infinite;
+    font-weight: 800; /* ← إضافة وزن خط */
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.3); /* ← إضافة ظل للنص */
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.2)); /* ← إضافة تأثير إضاءة */
+}
+
+.school-info p {
+    font-size: 1.3rem; /* ← زيادة من 1.1rem إلى 1.3rem */
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.8; /* ← زيادة من 1.6 إلى 1.8 */
+    background: linear-gradient(45deg, #a8edea, #fed6e3, #ffeaa7, #dfe6e9);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-text 6s ease infinite;
+    font-weight: 600; /* ← إضافة وزن خط */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* ← إضافة ظل للنص */
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); /* ← إضافة تأثير إضاءة */
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.feature i {
+    font-size: 2rem; /* ← زيادة من 1.5rem إلى 2rem */
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-text 4s ease infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)); /* ← إضافة تأثير إضاءة */
+}
+
+.feature span {
+    font-size: 1.1rem; /* ← زيادة من 0.9rem إلى 1.1rem */
+    font-weight: 600; /* ← زيادة من 500 إلى 600 */
+    background: linear-gradient(45deg, #ffeaa7, #dfe6e9, #a8edea, #fed6e3);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-text 5s ease infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* ← إضافة ظل للنص */
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2)); /* ← إضافة تأثير إضاءة */
+}
+
+/* Clock Widget - From Uiverse.io by Javierrocadev */
+.clock-widget {
+    position: fixed;
+    top: 50%;
+    left: 2rem;
+    transform: translateY(-50%);
+    z-index: 15; /* ← رفع z-index ليظهر فوق المطر */
+    animation: slideInLeft 1s ease-out 2s both;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px) translateY(-50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(-50%);
+    }
+}
+
+.clock-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 176px;
+    height: 176px;
+    border-radius: 16px;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    background: #171717;
+    color: #fafafa;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.clock-container::before {
+    content: '';
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: #c2410c;
+    border-radius: 50%;
+    filter: blur(32px);
+    top: 64px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+.date-text {
+    font-size: 1rem; /* ← زيادة من 0.875rem إلى 1rem */
+    font-weight: 600; /* ← زيادة من 500 إلى 600 */
+    opacity: 0.9;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #f093fb, #f5576c, #4facfe, #00f2fe);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-text 3s ease infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* ← إضافة ظل للنص */
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2)); /* ← إضافة تأثير إضاءة */
+}
+
+.time-display {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 0.5rem 0;
+    direction: ltr; /* ← إضافة اتجاه النص من اليسار لليمين */
+}
+
+.time-hours {
+    font-size: 3.75rem;
+    color: #f59e0b;
+    text-shadow: 2px 2px #fff, 1px 2px #fff;
+    font-weight: 700;
+    line-height: 1;
+    direction: ltr; /* ← إضافة اتجاه النص من اليسار لليمين */
+    unicode-bidi: embed; /* ← إضافة لدعم الاتجاه ثنائي */
+    font-family: 'Courier New', monospace; /* ← إضافة خط أحادي المسافة */
+}
+
+.time-separator {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fafafa;
+    text-shadow: none;
+    margin: 0 0.25rem;
+    direction: ltr; /* ← إضافة اتجاه النص من اليسار لليمين */
+    font-family: 'Courier New', monospace; /* ← إضافة خط أحادي المسافة */
+}
+
+.time-minutes {
+    font-size: 3.75rem;
+    color: #f59e0b;
+    text-shadow: 2px 2px #fff, 1px 2px #fff;
+    font-weight: 700;
+    line-height: 1;
+    direction: ltr; /* ← إضافة اتجاه النص من اليسار لليمين */
+    unicode-bidi: embed; /* ← إضافة لدعم الاتجاه ثنائي */
+    font-family: 'Courier New', monospace; /* ← إضافة خط أحادي المسافة */
+}
+
+.weather-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.temperature {
+    font-size: 0.9rem; /* ← زيادة من 0.75rem إلى 0.9rem */
+    font-weight: 800; /* ← زيادة من 700 إلى 800 */
+    color: #fafafa;
+    background: linear-gradient(45deg, #ff6347, #ff3814, #ff6b6b, #ff8787);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-text 2s ease infinite;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* ← إضافة ظل للنص */
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2)); /* ← إضافة تأثير إضاءة */
+}
+
+.weather-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.weather-icons .w-5 {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.weather-icons .h-5 {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.weather-icons .fill-red-500 {
+    fill: #ef4444;
+}
+
+.weather-icons .animate-bounce {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+}
+
+.weather-icons .fill-current {
+    fill: currentColor;
+}
+
+/* Responsive Design for Clock */
+@media (max-width: 1200px) {
+    .clock-widget {
+        left: 1rem;
+    }
+    
+    .clock-container {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .time-hours,
+    .time-minutes {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .clock-widget {
+        position: static;
+        transform: none;
+        margin: 2rem auto;
+        animation: fadeIn 1s ease-out 2s both;
+    }
+    
+    .clock-container {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .time-hours,
+    .time-minutes {
+        font-size: 2.5rem;
+    }
+    
+    .date-text {
+        font-size: 0.75rem;
+    }
+    
+    .temperature {
+        font-size: 0.625rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .clock-container {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .time-hours,
+    .time-minutes {
+        font-size: 2rem;
+    }
+    
+    .weather-icons .w-5,
+    .weather-icons .h-5 {
+        width: 1rem;
+        height: 1rem;
+    }
+}
+@media (max-width: 768px) {
+    .welcome-container {
+        gap: 2rem;
+        padding: 2rem;
+    }
+    
+    .card {
+        width: 180px;
+        height: 340px;
+    }
+    
+    .hello {
+        font-size: 1.3rem;
+    }
+    
+    .hidden {
+        font-size: 1rem;
+    }
+    
+    .school-info h2 {
+        font-size: 1.5rem;
+    }
+    
+    .school-info p {
+        font-size: 1rem;
+    }
+    
+    .features {
+        gap: 1rem;
+    }
+    
+    .enter-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 160px;
+        height: 300px;
+    }
+    
+    .hello {
+        font-size: 1.1rem;
+        line-height: 25px;
+    }
+    
+    .hidden {
+        font-size: 0.9rem;
+    }
+    
+    .features {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .feature {
+        flex-direction: row;
+        justify-content: center;
+    }
+}

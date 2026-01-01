@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإحصائيات - نظام إدارة المدرسة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- زر العودة -->
+    <button class="back-button" onclick="goBack()">
+        <i class="fas fa-arrow-right"></i>
+        <span>عودة للرئيسية</span>
+    </button>
+
+    <div class="container">
+        <!-- رأس الصفحة -->
+        <div class="stats-header">
+            <h1><i class="fas fa-chart-line"></i> الإحصائيات</h1>
+            <p>نظرة شاملة على أداء النظام وبيانات الطلبة</p>
+        </div>
+
+        <!-- بطاقات الإحصائيات الرئيسية -->
+        <div class="stats-cards">
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <div class="info">
+                    <h3>إجمالي الطلبة</h3>
+                    <p id="totalStudents">0</p>
+                </div>
+            </div>
+            
+            <div class="stat-card paid">
+                <i class="fas fa-check-circle"></i>
+                <div class="info">
+                    <h3>الطلبة دفعو كامل</h3>
+                    <p id="paidStudents">0</p>
+                </div>
+            </div>
+            
+            <div class="stat-card partial">
+                <i class="fas fa-clock"></i>
+                <div class="info">
+                    <h3>الطلبة دفعو جزئي</h3>
+                    <p id="partialStudents">0</p>
+                </div>
+            </div>
+            
+            <div class="stat-card unpaid">
+                <i class="fas fa-times-circle"></i>
+                <div class="info">
+                    <h3>الطلبة لم يدفعو</h3>
+                    <p id="unpaidStudents">0</p>
+                </div>
+            </div>
+            
+            <div class="stat-card total-payments">
+                <i class="fas fa-money-bill-wave"></i>
+                <div class="info">
+                    <h3>مجموع المدفوعات</h3>
+                    <p id="totalPayments">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التصدير -->
+        <div class="export-buttons">
+            <button class="export-btn" onclick="exportToPDF()">
+                <i class="fas fa-file-pdf"></i>
+                <span>تصدير PDF</span>
+            </button>
+            <button class="export-btn print" onclick="printStats()">
+                <i class="fas fa-print"></i>
+                <span>طباعة</span>
+            </button>
+        </div>
+
+        <!-- الرسوم البيانية -->
+        <div class="charts-container">
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-pie"></i> توزيع حالات الدفع</h3>
+                <canvas id="paymentStatusChart" width="400" height="300"></canvas>
+            </div>
+            
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-bar"></i> المدفوعات الشهرية</h3>
+                <canvas id="monthlyPaymentsChart" width="400" height="300"></canvas>
+            </div>
+            
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-line"></i> نمو عدد الطلبة</h3>
+                <canvas id="studentsGrowthChart" width="400" height="300"></canvas>
+            </div>
+            
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-area"></i> توزيع الصفوف الدراسية</h3>
+                <canvas id="gradeDistributionChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+
+        <!-- جدول إحصائيات مفصل -->
+        <div class="table-container">
+            <h2><i class="fas fa-table"></i> إحصائيات مفصلة</h2>
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>الصف الدراسي</th>
+                        <th>عدد الطلبة</th>
+                        <th>دفع كامل</th>
+                        <th>دفع جزئي</th>
+                        <th>لم يدفع</th>
+                        <th>مجموع المدفوعات</th>
+                        <th>متوسط الدفع</th>
+                    </tr>
+                </thead>
+                <tbody id="statsTableBody">
+                    <!-- سيتم ملؤه ديناميكياً -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // استيراد بيانات الطلبة من التخزين المحلي
+        let students = JSON.parse(localStorage.getItem('students')) || [];
+        let charts = {}; // لتخزين مرجع الرسوم البيانية
+
+        // وظيفة العودة للصفحة الرئيسية
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        // تحديث الإحصائيات
+        function updateStats() {
+            const totalStudents = students.length;
+            const paidStudents = students.filter(s => s.paymentStatusValue === 'paid').length;
+            const partialStudents = students.filter(s => s.paymentStatusValue === 'partial').length;
+            const unpaidStudents = students.filter(s => s.paymentStatusValue === 'unpaid').length;
+            const totalPayments = students.reduce((sum, student) => sum + (student.totalPayment || 0), 0);
+
+            // تحديث بطاقات الإحصائيات
+            document.getElementById('totalStudents').textContent = totalStudents.toLocaleString('en-US');
+            document.getElementById('paidStudents').textContent = paidStudents.toLocaleString('en-US');
+            document.getElementById('partialStudents').textContent = partialStudents.toLocaleString('en-US');
+            document.getElementById('unpaidStudents').textContent = unpaidStudents.toLocaleString('en-US');
+            document.getElementById('totalPayments').textContent = totalPayments.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+            // تحديث الجدول المفصل
+            updateDetailedStats();
+            
+            // إنشاء الرسوم البيانية
+            createCharts();
+        }
+
+        // تدمير الرسوم البيانية القديمة
+        function destroyCharts() {
+            Object.keys(charts).forEach(key => {
+                if (charts[key]) {
+                    charts[key].destroy();
+                    charts[key] = null;
+                }
+            });
+        }
+
+        // إنشاء الرسوم البيانية
+        function createCharts() {
+            // تدمير الرسوم القديمة أولاً
+            destroyCharts();
+            
+            createPaymentStatusChart();
+            createMonthlyPaymentsChart();
+            createStudentsGrowthChart();
+            createGradeDistributionChart();
+        }
+
+        // رسم بياني دائري لحالات الدفع
+        function createPaymentStatusChart() {
+            const ctx = document.getElementById('paymentStatusChart').getContext('2d');
+            const paidCount = students.filter(s => s.paymentStatusValue === 'paid').length;
+            const partialCount = students.filter(s => s.paymentStatusValue === 'partial').length;
+            const unpaidCount = students.filter(s => s.paymentStatusValue === 'unpaid').length;
+
+            charts.paymentStatus = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['دفع كامل', 'دفع جزئي', 'لم يدفع'],
+                    datasets: [{
+                        data: [paidCount, partialCount, unpaidCount],
+                        backgroundColor: [
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(255, 193, 7, 0.8)',
+                            'rgba(220, 53, 69, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(40, 167, 69, 1)',
+                            'rgba(255, 193, 7, 1)',
+                            'rgba(220, 53, 69, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: 'Tajawal',
+                                    size: 14
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // رسم بياني عمودي للمدفوعات الشهرية
+        function createMonthlyPaymentsChart() {
+            const ctx = document.getElementById('monthlyPaymentsChart').getContext('2d');
+            
+            // تجميع المدفوعات حسب الشهر
+            const monthlyData = {};
+            const months = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+            
+            students.forEach(student => {
+                if (student.registrationDate) {
+                    const date = new Date(student.registrationDate);
+                    const month = date.getMonth();
+                    const monthName = months[month];
+                    
+                    if (!monthlyData[monthName]) {
+                        monthlyData[monthName] = 0;
+                    }
+                    monthlyData[monthName] += student.totalPayment || 0;
+                }
+            });
+
+            charts.monthlyPayments = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: 'مجموع المدفوعات',
+                        data: months.map(month => monthlyData[month] || 0),
+                        backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                        borderColor: 'rgba(102, 126, 234, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // رسم بياني خطي لنمو الطلبة
+        function createStudentsGrowthChart() {
+            const ctx = document.getElementById('studentsGrowthChart').getContext('2d');
+            
+            // تجميع الطلبة حسب الشهر
+            const growthData = {};
+            const months = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+            
+            students.forEach(student => {
+                if (student.registrationDate) {
+                    const date = new Date(student.registrationDate);
+                    const month = date.getMonth();
+                    const monthName = months[month];
+                    
+                    if (!growthData[monthName]) {
+                        growthData[monthName] = 0;
+                    }
+                    growthData[monthName]++;
+                }
+            });
+
+            // حساب التراكمي
+            let cumulative = 0;
+            const cumulativeData = months.map(month => {
+                cumulative += (growthData[month] || 0);
+                return cumulative;
+            });
+
+            charts.studentsGrowth = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: 'مجموع الطلبة',
+                        data: cumulativeData,
+                        borderColor: 'rgba(118, 75, 162, 1)',
+                        backgroundColor: 'rgba(118, 75, 162, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // رسم بياني مساحي لتوزيع الصفوف
+        function createGradeDistributionChart() {
+            const ctx = document.getElementById('gradeDistributionChart').getContext('2d');
+            
+            // تجميع الطلبة حسب الصف
+            const gradeData = {};
+            students.forEach(student => {
+                if (!gradeData[student.grade]) {
+                    gradeData[student.grade] = 0;
+                }
+                gradeData[student.grade]++;
+            });
+
+            const grades = Object.keys(gradeData).sort();
+            const counts = grades.map(grade => gradeData[grade]);
+
+            charts.gradeDistribution = new Chart(ctx, {
+                type: 'polarArea',
+                data: {
+                    labels: grades,
+                    datasets: [{
+                        label: 'عدد الطلبة',
+                        data: counts,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: 'Tajawal',
+                                    size: 14
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // تحديث الإحصائيات المفصلة حسب الصف
+        function updateDetailedStats() {
+            const grades = {};
+            
+            // تجميع البيانات حسب الصف
+            students.forEach(student => {
+                if (!grades[student.grade]) {
+                    grades[student.grade] = {
+                        total: 0,
+                        paid: 0,
+                        partial: 0,
+                        unpaid: 0,
+                        totalPayment: 0
+                    };
+                }
+                
+                grades[student.grade].total++;
+                grades[student.grade][student.paymentStatusValue]++;
+                grades[student.grade].totalPayment += student.totalPayment || 0;
+            });
+
+            // إنشاء صفوف الجدول
+            const tbody = document.getElementById('statsTableBody');
+            tbody.innerHTML = '';
+
+            Object.keys(grades).sort().forEach(grade => {
+                const stats = grades[grade];
+                const averagePayment = stats.total > 0 ? stats.totalPayment / stats.total : 0;
+                
+                const row = `
+                    <tr>
+                        <td>${grade}</td>
+                        <td>${stats.total}</td>
+                        <td>${stats.paid}</td>
+                        <td>${stats.partial}</td>
+                        <td>${stats.unpaid}</td>
+                        <td class="amount">${stats.totalPayment.toLocaleString('en-US', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        })}</td>
+                        <td class="amount">${averagePayment.toLocaleString('en-US', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        })}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+
+            // إضافة صف المجموع
+            const totalRow = `
+                <tr class="total-row">
+                    <td><strong>المجموع</strong></td>
+                    <td><strong>${students.length}</strong></td>
+                    <td><strong>${students.filter(s => s.paymentStatusValue === 'paid').length}</strong></td>
+                    <td><strong>${students.filter(s => s.paymentStatusValue === 'partial').length}</strong></td>
+                    <td><strong>${students.filter(s => s.paymentStatusValue === 'unpaid').length}</strong></td>
+                    <td class="amount"><strong>${students.reduce((sum, s) => sum + (s.totalPayment || 0), 0).toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}</strong></td>
+                    <td class="amount"><strong>${students.length > 0 ? (students.reduce((sum, s) => sum + (s.totalPayment || 0), 0) / students.length).toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }) : '0.00'}</strong></td>
+                </tr>
+            `;
+            tbody.innerHTML += totalRow;
+        }
+
+        // وظيفة التصدير إلى PDF
+        function exportToPDF() {
+            window.print();
+        }
+
+        // وظيفة الطباعة
+        function printStats() {
+            window.print();
+        }
+
+        // تحديث الإحصائيات عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+            
+            // تحديث الإحصائيات كل 5 ثواني (للتحديث التلقائي)
+            setInterval(updateStats, 5000);
+        });
+
+        // الاستماع للتغييرات في التخزين المحلي
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'students') {
+                students = JSON.parse(e.newValue) || [];
+                updateStats();
+            }
+        });
+    </script>
+
+    <style>
+        /* أنماط الطباعة */
+        @media print {
+            .back-button,
+            .export-buttons {
+                display: none;
+            }
+            
+            .chart-card canvas {
+                max-height: 200px !important;
+            }
+            
+            body {
+                font-size: 12px;
+            }
+            
+            .stats-cards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .charts-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* تصميم الجدول الإحصائي */
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .stats-table th,
+        .stats-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .stats-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .stats-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .stats-table .total-row {
+            background: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .stats-table .total-row td {
+            border-top: 2px solid #667eea;
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .table-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+    </style>
+</body>
+</html>

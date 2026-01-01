@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المدرسة</title>
+    <meta http-equiv="refresh" content="0; url=welcome.html">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin: 0;
+        }
+        .loading {
+            text-align: center;
+        }
+        .loading i {
+            font-size: 3rem;
+            animation: spin 2s linear infinite;
+            margin-bottom: 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .loading p {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <i class="fas fa-school"></i>
+        <h2>نظام إدارة المدرسة</h2>
+        <p>جاري التحميل...</p>
+    </div>
+</body>
+</html>

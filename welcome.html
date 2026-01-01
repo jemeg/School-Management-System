@@ -3,174 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مرحباً - نظام إدارة المدرسة</title>
+    <title>نظام إدارة المدرسة - إدارة القبول والرسوم</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="welcome.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Flashlight Background Container - From Uiverse.io by Cobp -->
-    <div class="flashlight-container"></div>
-    
-    <div class="welcome-container">
-        <!-- Welcome Card -->
-        <div class="card">
-            <div class="btn1"></div>
-            <div class="btn2"></div>
-            <div class="btn3"></div>
-            <div class="btn4"></div>
-            <div class="card-int">
-                <div class="hello">
-                    مرحباً بك
-                    <span class="hidden">في نظام إدارة المدرسة</span>
-                </div>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-school"></i>
+                <h1>نظام إدارة المدرسة</h1>
             </div>
-            <div class="top">
-                <div class="camera">
-                    <div class="int"></div>
-                </div>
-                <div class="speaker"></div>
-            </div>
-        </div>
+            <div class="date" id="currentDate"></div>
+        </header>
 
-        <!-- Enter Button -->
-        <div class="enter-container">
-            <button class="enter-btn" onclick="enterSystem()">
-                <i class="fas fa-arrow-left"></i>
-                <span>دخول إلى النظام</span>
-            </button>
-        </div>
-
-        <!-- School Info -->
-        <div class="school-info">
-            <h2><i class="fas fa-user-plus"></i>نظام إدارة المدرسة</h2>
-            <p>نظام متكامل لإدارة شؤون الطلبة والرسوم الدراسية</p>
-            <div class="features">
-                <div class="feature">
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Statistics Cards -->
+            <section class="stats-cards">
+                <div class="stat-card total-students">
                     <i class="fas fa-users"></i>
-                    <span>إدارة الطلبة</span>
+                    <div class="info">
+                        <h3>إجمالي الطلبة</h3>
+                        <p id="totalStudents">0</p>
+                    </div>
                 </div>
-                <div class="feature">
-                    <i class="fas fa-money-bill-wave"></i>
-                    <span>تتبع المدفوعات</span>
+                <div class="stat-card paid">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="info">
+                        <h3>الطلبة دفعو كامل </h3>
+                        <p id="paidStudents">0</p>
+                    </div>
                 </div>
-                <div class="feature">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>إحصائيات دقيقة</span>
+                <div class="stat-card partial">
+                    <i class="fas fa-clock"></i>
+                    <div class="info">
+                        <h3>الطلبة دفعو جزئي</h3>
+                        <p id="partialStudents">0</p>
+                    </div>
                 </div>
+                <div class="stat-card unpaid">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div class="info">
+                        <h3>الطلبة لم يدفعو</h3>
+                        <p id="unpaidStudents">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Student Form -->
+            <section class="student-form">
+                <h2><i class="fas fa-user-plus"></i> إضافة طالب جديد</h2>
+                <form id="studentForm">
+                    <div class="form-group">
+                        <label for="fullName">الاسم الكامل</label>
+                        <input type="text" id="fullName" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="grade">الصف الدراسي</label>
+                            <select id="grade" required>
+                                <option value="">اختر الصف</option>
+                                <option value="الأول ابتدائي">الأول ابتدائي</option>
+                                <option value="الثاني ابتدائي">الثاني ابتدائي</option>
+                                <option value="الثالث ابتدائي">الثالث ابتدائي</option>
+                                <option value="الرابع ابتدائي">الرابع ابتدائي</option>
+                                <option value="الخامس ابتدائي">الخامس ابتدائي</option>
+                                <option value="السادس ابتدائي">السادس ابتدائي</option>
+                                <option value="الأول متوسط">الأول متوسط</option>
+                                <option value="الثاني متوسط">الثاني متوسط</option>
+                                <option value="الثالث متوسط">الثالث متوسط</option>
+                                <option value="الأول ثانوي">الأول ثانوي</option>
+                                <option value="الثاني ثانوي">الثاني ثانوي</option>
+                                <option value="الثالث ثانوي">الثالث ثانوي</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="registrationDate">تاريخ التسجيل</label>
+                            <input type="date" id="registrationDate" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <h3><i class="fas fa-mony-plus"></i> عدد شهور الدفع </h3>
+                            <!-- From Uiverse.io by 3bdel3ziz-T --> 
+                            <div class="select">
+                              <div
+                                class="selected"
+                                data-default="شهور الدفع"
+                                data-one="شهر 1"
+                                data-two="شهرين 2"
+                                data-three="3 شهور"
+                                data-four="4 شهور"
+                                data-five="شهور 5"
+                                data-six="شهور 6"
+                                data-seven="شهور 7"
+                                data-eight="شهور 8"
+                                data-nine="شهور 9"
+                                data-ten="شهور 10"
+                                data-Eleven="شهور 11"
+                                data-Twelve="شهور 12"
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  height="1em"
+                                  viewBox="0 0 512 512"
+                                  class="arrow"
+                                >
+                                  <path
+                                    d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+                                  ></path>
+                                </svg>
+                              </div>
+                              <div class="options">
+                                <div title="all">
+                                  <input id="all" name="paymentMonths" type="radio" checked="" />
+                                  <label class="option" for="all" data-txt="غير محدد"></label>
+                                </div>
+                                <div title="option-1">
+                                  <input id="option-1" name="paymentMonths" type="radio" />
+                                  <label class="option" for="option-1" data-txt="شهر 1"></label>
+                                </div>
+                                <div title="option-2">
+                                  <input id="option-2" name="paymentMonths" type="radio" />
+                                  <label class="option" for="option-2" data-txt="شهرين 2"></label>
+                                </div>
+                                <div title="option-3">
+                                  <input id="option-3" name="paymentMonths" type="radio" />
+                                  <label class="option" for="option-3" data-txt="3 شهور"></label>
+                                </div>
+                                <div title="option-4">
+                                  <input id="option-4" name="paymentMonths" type="radio" />
+                                  <label class="option" for="option-4" data-txt="4 شهور"></label>
+                                </div>
+                                <div title="option-5">
+                                  <input id="option-5" name="paymentMonths" type="radio" />
+                                  <label class="option" for="option-5" data-txt="شهور 5"></label>
+                                </div>
+                                <div title="option-6">
+                                  <input id="option-6" name="paymentMonths" type="radio" />
+                                  <label class="option" for="option-6" data-txt="شهور 6"></label>
+                                </div>
+                                <div title="option-7">
+                                  <input id="option-7" name="paymentMonths" type="radio" />
+                                  <label class="option" for="option-7" data-txt="شهور 7"></label>
+                                </div>
+                                <div title="option-8">
+                                  <input id="option-8" name="paymentMonths" type="radio" />
+                                  <label class="option" for="option-8" data-txt="شهور 8"></label>
+                                </div>
+                                <div title="option-9">
+                                  <input id="option-9" name="paymentMonths" type="radio" />
+                                  <label class="option" for="option-9" data-txt="شهور 9"></label>
+                                </div>
+                                <div title="option-10">
+                                  <input id="option-10" name="paymentMonths" type="radio" />
+                                  <label class="option" for="option-10" data-txt="شهور 10"></label>
+                                </div>
+                                <div title="option-11">
+                                  <input id="option-11" name="paymentMonths" type="radio" />
+                                  <label class="option" for="option-11" data-txt="شهور 11"></label>
+                                </div>
+                                <div title="option-12">
+                                  <input id="option-12" name="paymentMonths" type="radio" />
+                                  <label class="option" for="option-12" data-txt="شهور 12"></label>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h4><i class="fas fa-mony-plus"></i>  حالة الدفع </h4>
+                            <!-- From Uiverse.io by andrew-demchenk0 --> 
+                            <div class="wrapper">
+                                <div class="card">
+                                    <input class="input" type="radio" name="paymentStatus" value="unpaid" id="unpaid">
+                                    <span class="check"></span>
+                                    <label class="label" for="unpaid">
+                                        <div class="title">لم يدفع</div>
+                                    </label>
+                                </div>
+                                <div class="card">
+                                    <input class="input" type="radio" name="paymentStatus" value="partial" id="partial">
+                                    <span class="check"></span>
+                                    <label class="label" for="partial">
+                                        <div class="title">دفع جزئي</div>
+                                    </label>
+                                </div>
+                                <div class="card">
+                                    <input class="input" type="radio" name="paymentStatus" value="paid" id="paid" checked>
+                                    <span class="check"></span>
+                                    <label class="label" for="paid">
+                                        <div class="title">دفع كامل</div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <h5><i class="fas fa-mony-plus"></i>المبلغ الشهري </h5>
+                            <div class="quantity-input-container">
+                                <button type="button" id="decrement-button" class="quantity-btn decrement">
+                                    <svg class="w-3 h-3" viewBox="0 0 18 2">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"></path>
+                                    </svg>
+                                </button>
+                                <input type="text" id="paymentAmount" class="quantity-input" placeholder="0.00" required>
+                                <button type="button" id="increment-button" class="quantity-btn increment">
+                                    <svg class="w-3 h-3" viewBox="0 0 18 18">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <p class="helper-text">أدخل المبلغ الشهري بالدينار</p>
+                            <p class="info-text"><i class="fas fa-info-circle"></i>للعلم ان المبلغ الذي يجب ادخاله هو سعر الشهر الواحد لانه سيضرب في شهور الاشتراك ليعطي المجموع في الاسفل </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h6><i class="fas fa-mony-plus"></i> جنس الطلبة </h6>
+                        <div class="gender-container">
+                            <div class="gender-toggle-wrapper">
+                                <input id="genderSwitch" class="gender-toggle" type="checkbox" hidden />
+                                <label for="genderSwitch" class="switch">
+                                    <span class="gender-option male">♂</span>
+                                    <span class="gender-option female">♀</span>
+                                </label>
+                            </div>
+                            <span class="gender-label">ذكر</span>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="saveBtn">
+                            <i class="fas fa-save"></i> حفظ
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="cancelBtn" style="display: none;">
+                            <i class="fas fa-times"></i> إلغاء
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Filters -->
+            <section class="filters no-print">
+                <h2><i class="fas fa-filter"></i> تصفية النتائج</h2>
+                <div class="filter-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="ابحث بالاسم أو الصف...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterPaymentStatus">حالة الدفع:</label>
+                        <select id="filterPaymentStatus">
+                            <option value="all">الكل</option>
+                            <option value="paid">مدفوع</option>
+                            <option value="partial">دفع جزئي</option>
+                            <option value="unpaid">غير مدفوع</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterPaymentType">نوع الدفع:</label>
+                        <select id="filterPaymentType">
+                            <option value="all">الكل</option>
+                            <option value="شهري">شهري</option>
+                            <option value="سنوي">سنوي</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterMonth">الشهر:</label>
+                        <select id="filterMonth">
+                            <option value="all">كل الشهور</option>
+                            <option value="1">يناير</option>
+                            <option value="2">فبراير</option>
+                            <option value="3">مارس</option>
+                            <option value="4">أبريل</option>
+                            <option value="5">مايو</option>
+                            <option value="6">يونيو</option>
+                            <option value="7">يوليو</option>
+                            <option value="8">أغسطس</option>
+                            <option value="9">سبتمبر</option>
+                            <option value="10">أكتوبر</option>
+                            <option value="11">نوفمبر</option>
+                            <option value="12">ديسمبر</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-secondary" id="resetFilters">
+                        <i class="fas fa-redo"></i> إعادة تعيين
+                    </button>
+                    <button class="btn btn-print" id="printReport">
+                        <i class="fas fa-print"></i> طباعة التقرير
+                    </button>
+                    <button class="btn btn-statistics" id="statisticsBtn">
+                        <i class="fas fa-chart-line"></i> الإحصائيات
+                    </button>
+                    <button class="btn btn-danger" onclick="clearAllData()" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);">
+                        <i class="fas fa-trash"></i> مسح البيانات
+                    </button>
+                    <button class="btn btn-success" onclick="exportData()" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%);">
+                        <i class="fas fa-download"></i> تصدير البيانات
+                    </button>
+                </div>
+            </section>
+
+            <!-- Students Table -->
+            <section class="students-table">
+                <h2><i class="fas fa-list"></i> سجل الطلبة</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>م</th>
+                                <th>الاسم الكامل</th>
+                                <th>الصف الدراسي</th>
+                                <th>الجنس</th>
+                                <th>تاريخ التسجيل</th>
+                                <th>عدد شهور الدفع</th>
+                                <th>المبلغ الشهري</th>
+                                <th>المجموع الكلي</th>
+                                <th>حالة الدفع</th>
+                                <th>آخر تحديث</th>
+                                <th class="no-print">الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <!-- Students will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="no-results" id="noResults" style="display: none;">
+                    <i class="fas fa-inbox"></i>
+                    <p>لا توجد بيانات متاحة</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer no-print">
+            <p>جميع الحقوق محفوظة &copy; <span id="currentYear"></span> - نظام إدارة المدرسة</p>
+        </footer>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3 id="modalTitle">تأكيد الحذف</h3>
+            <p id="modalMessage">هل أنت متأكد من حذف هذا الطالب؟ لا يمكن التراجع عن هذه العملية.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelModalBtn">إلغاء</button>
+                <button class="btn btn-danger" id="confirmModalBtn">تأكيد الحذف</button>
             </div>
         </div>
     </div>
 
-    <!-- Clock Widget - From Uiverse.io by Javierrocadev -->
-    <div class="clock-widget">
-        <div class="clock-container">
-            <span class="date-text" id="dateText">الأحد، 15 يناير</span>
-            <div class="time-display">
-                <span class="time-hours" id="timeHours">12</span>
-                <span class="time-separator">:</span>
-                <span class="time-minutes" id="timeMinutes">58</span>
-            </div>
-            <div class="weather-info">
-                <span class="temperature" id="temperature">89°</span>
-                <div class="weather-icons">
-                    <svg class="w-5 h-5 fill-red-500 animate-bounce" height="100" preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100" width="100" x="0" xmlns="http://www.w3.org/2000/svg" y="0">
-                        <path class="" d="M23,27.6a15.8,15.8,0,0,1,22.4,0L50,32.2l4.6-4.6A15.8,15.8,0,0,1,77,50L50,77,23,50A15.8,15.8,0,0,1,23,27.6Z" fill-rule="evenodd">
-                        </path>
-                    </svg>
-                    <svg class="w-5 h-5 fill-current" height="100" preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100" width="100" x="0" xmlns="http://www.w3.org/2000/svg" y="0">
-                        <path class="svg-fill-primary" d="M80.2,40.7l-1.1-2-.2-.3.3-.3c2.2-14.7-21.3-25.6-20.7-21S57,38.1,45.4,31.8c-9.3-5.1-12.9,12.1-22.8,33.7C16.2,79.4,20.8,82.3,27,81l.3.4L29,83.3a1.4,1.4,0,0,0,1.8.5l.9-.3a1.6,1.6,0,0,0,1.1-1.9l-.5-2.5a38.2,38.2,0,0,0,4.5-2.7L38.6,78a1.8,1.8,0,0,0,2.4-.1l1.2-1.1a1.9,1.9,0,0,0,.4-1.9l-1-2.5L45.5,69l1.7,1.6a1.8,1.8,0,0,0,2.4-.1l.9-1a1.7,1.7,0,0,0,.4-1.8L50,65c5.6-5,11.9-10.9,17.3-15.8l.4.2,1.9,1.1a1.6,1.6,0,0,0,2.1-.2l.8-.8a1.6,1.6,0,0,0,.3-2.1l-1.3-2.1,3.2-3.1,2.2,1.5a1.8,1.8,0,0,0,2.2-.1l.8-.8A1.7,1.7,0,0,0,80.2,40.7Z">
-                        </path>
-                    </svg>
-                    <svg class="w-5 h-5 fill-current" height="100" preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100" width="100" x="0" xmlns="http://www.w3.org/2000/svg" y="0">
-                        <path class="svg-fill-primary" d="M59.5,20.5a3.9,3.9,0,0,0-2.5-2,4.3,4.3,0,0,0-3.3.5,11.9,11.9,0,0,0-3.2,3.5,26,26,0,0,0-2.3,4.4,76.2,76.2,0,0,0-3.3,10.8,120.4,120.4,0,0,0-2.4,14.2,11.4,11.4,0,0,1-3.8-4.2c-1.3-2.7-1.5-6.1-1.5-10.5a4,4,0,0,0-2.5-3.7,3.8,3.8,0,0,0-4.3.9,27.7,27.7,0,1,0,39.2,0,62.4,62.4,0,0,1-5.3-5.8A42.9,42.9,0,0,1,59.5,20.5ZM58.4,70.3a11.9,11.9,0,0,1-20.3-8.4s3.5,2,9.9,2c0-4,2-15.9,5-17.9a21.7,21.7,0,0,0,5.4,7.5,11.8,11.8,0,0,1,3.5,8.4A12,12,0,0,1,58.4,70.3Z" fill-rule="evenodd">
-                        </path>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
 
-    <script>
-        function enterSystem() {
-            // الانتقال إلى الصفحة الرئيسية
-            window.location.href = 'index.html';
-        }
-
-        // تحديث الساعة بتوقيت ليبيا طرابلس (GMT+2) - تنسيق 12 ساعة
-        function updateClock() {
-            const now = new Date();
-            
-            // تحويل التوقيت إلى ليبيا طرابلس (GMT+2)
-            const libyaTime = new Date(now.toLocaleString("en-US", {timeZone: "Africa/Tripoli"}));
-            
-            // تحديث الوقت بتنسيق 12 ساعة
-            let hours = libyaTime.getHours();
-            const minutes = libyaTime.getMinutes();
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            
-            // تحويل إلى تنسيق 12 ساعة
-            hours = hours % 12;
-            hours = hours ? hours : 12; // الساعة 0 تصبح 12
-            
-            // تنسيق الأرقام
-            const formattedHours = hours.toString().padStart(2, '0');
-            const formattedMinutes = minutes.toString().padStart(2, '0');
-            
-            document.getElementById('timeHours').textContent = formattedHours;
-            document.getElementById('timeMinutes').textContent = formattedMinutes;
-            
-            // تحديث التاريخ
-            const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
-            const months = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
-            const dayName = days[libyaTime.getDay()];
-            const monthName = months[libyaTime.getMonth()];
-            const day = libyaTime.getDate();
-            document.getElementById('dateText').textContent = `${dayName}, ${monthName} ${day}`;
-            
-            // تحديث درجة الحرارة (قيمة ثابتة للعرض)
-            document.getElementById('temperature').textContent = '89°';
-            
-            // عرض التوقيت الحالي في الكونسول للتأكد
-            console.log('توقيت ليبيا طرابلس (12 ساعة):', libyaTime.toLocaleString('ar-LY', { 
-                timeZone: 'Africa/Tripoli',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true
-            }));
-        }
-
-        // إضافة تأثيرات ديناميكية
-        document.addEventListener('DOMContentLoaded', function() {
-            // تحديث الساعة فوراً وكل ثانية
-            updateClock();
-            setInterval(updateClock, 1000);
-            
-            // تأثير الكتابة التدريجي
-            const helloElement = document.querySelector('.hello');
-            const hiddenElement = document.querySelector('.hidden');
-            
-            setTimeout(() => {
-                hiddenElement.style.opacity = '1';
-            }, 1000);
-
-            // تأثير الظهور التدريجي للعناصر
-            const features = document.querySelectorAll('.feature');
-            features.forEach((feature, index) => {
-                setTimeout(() => {
-                    feature.style.opacity = '1';
-                    feature.style.transform = 'translateY(0)';
-                }, 1500 + (index * 200));
-            });
-
-            // إمكانية الضغط على Enter للدخول
-            document.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    enterSystem();
-                }
-            });
-        });
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
